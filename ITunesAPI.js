@@ -14,6 +14,8 @@ xmlhttp.onreadystatechange = function(){
 	if(this.readyState == 4){
 		myDataText = xmlhttp.response;
 		myData = JSON.parse(myDataText);
+		// myData = myData[1];
+		distributeData(myData);
 		postData(myData);	
 	}
 }
@@ -23,30 +25,82 @@ xmlhttp.responseType = 'text';
 xmlhttp.send();
 
 function postData(allData){
-	let image = document.createElement("img");
-	image.src = allData.results[4].artworkUrl100;
-	image.width = 300;
-	document.getElementById("image").appendChild(image);
 
-	let artistName = allData.results[4].artistName;
-	let trackName = allData.results[4].trackName;
-	let albumName = allData.results[4].collectionName;
+	let artistName = [];
+	let trackName = [];
+	let albumName = [];
+	let image;
+	let sound;
 
-	let sound = document.createElement("audio");
-	sound.id = "audioTrack";
-	sound.controls = "controls";
-	sound.src = allData.results[4].previewUrl;
-	sound.type = "audio/mpeg";
-	document.getElementById("audioTrack").appendChild(sound);
+	for(let i = 0; i < allData.results.length; i++){
 
-	document.getElementById("artistName").innerHTML = artistName;
-	document.getElementById("trackName").innerHTML = trackName;
-	document.getElementById("albumName").innerHTML = albumName;
+		// let image = document.createElement("img");
+		// image.src = allData.results[i].artworkUrl100;
+		image = allData.results[i].artworkUrl100;
+		// // document.getElementById("image").appendChild(image);
+
+		artistName[i] = allData.results[i].artistName;
+		trackName[i] = allData.results[i].trackName;
+		albumName[i] = allData.results[i].collectionName;
+
+		// let sound = document.createElement("audio");
+		// sound.id = "audioTrack";
+		// sound.controls = "controls";
+		// sound.src = allData.results[i].previewUrl;
+		sound = allData.results[i].previewUrl;
+		// sound.type = "audio/mpeg";
+
+		createDiv(image, artistName[i],albumName[i],trackName[i],sound);
+
+		// document.getElementById("divAppend").appendChild(image);
+		// $("#divAppend").append("<div>"+artistName[i]+"\n"+trackName[i]+"\n"+"\n"+albumName[i]+"\n"+"</div");
+		// document.getElementById("divAppend").appendChild(sound);
+	}
 		
 }
 
-function searchData(allData){
+function createDiv(image,artistName,albumName,trackName,sound){
+let divContainer = "<div id='divAppend'>";
+let imageDiv = "<div id='imageDiv'>";
+let artistDiv = "<div id='artistDiv'>";
+let albumDiv = "<div id='artistDiv'>";
+let songDiv = "<div id='songDiv'>";
+let soundDiv = "<div id='soundDiv'>";
+let divClose = "</div>";
 
+let imagePlace = "<img src='" + image + "' alt= 'Anberlin' style='width:200px;height:200px; box-shadow: 10px 10px 10px gray;' />";
+let artistPlace = "<h1>" + artistName + "</h1>";
+let albumPlace = "<h1>" + albumName + "</h1>";
+let songTitle = "<h1>" + trackName + "</h1>";
+let songClip = "<audio src=" + sound + " controls = 'controls'> </audio>";
 
+let div = divContainer +
+			imageDiv +
+				imagePlace +
+			divClose +
+			artistDiv +
+				artistPlace +
+			divClose +
+			albumDiv +
+				albumPlace +
+			divClose +
+			songDiv + 
+				songTitle +
+			divClose +
+			soundDiv + 
+				songClip +
+			divClose +
+		divClose;
+$("body").append(div);
+
+}
+
+function distributeData(allData){
+
+	// $.each( allData, function( key , value ) {
+	// 	let objData = allData;
+	//    objData = allData.artistName;
+	//    console.log(objData);
+	// });
 
 }

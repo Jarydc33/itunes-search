@@ -5,33 +5,33 @@ height:200px;
 background-color: black;
 
 }
-
-#image{
-
-margin-top:25px;
-
-}
-
-#artistName{
-margin:0;
-padding:0;
-
-}
-
-#trackName{
-margin:0;
-padding:0;
+#divContainer{
 
 
 }
 
-#albumName{
-
-margin:0;
-padding:0;
+#artistDiv{
+	
 
 }
 
-#audioTrack{
+#imageDiv{
+
+background-color: blue;
+
+}
+
+#albumDiv{
+
+
+}
+
+#songDiv{
+
+
+}
+
+#soundDiv{
+
 
 }
