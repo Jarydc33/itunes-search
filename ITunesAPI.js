@@ -1,11 +1,26 @@
 
 let xmlhttp = new XMLHttpRequest();
-let userInput = prompt("Who do you want to look for?")
-userInput = userInput.split(" ");
-userInput = userInput.join("+");
-console.log(userInput);
 
-let url = "https://itunes.apple.com/search?parameterkeyvalue=key1=value1&Key=key1=value1%26amp;key2=value2%26amp;key3=value3&term=" + userInput + "";
+// let counter = 1;
+
+document.getElementById("searchButton").onclick = function(){getUserInput();}
+
+function getUserInput(){
+
+	// if(counter != 1){
+	// 	refreshPage();
+	// }
+	// counter++;
+	
+	let userInput = document.getElementById("searchText").value;
+	userInput = userInput.split(" ");
+	userInput = userInput.join("+");
+	let url = "https://itunes.apple.com/search?parameterkeyvalue=key1=value1&Key=key1=value1%26amp;key2=value2%26amp;key3=value3&term=" + userInput + "";
+
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+
+}
 
 xmlhttp.onreadystatechange = function(){
 	let myData = [];
@@ -14,17 +29,12 @@ xmlhttp.onreadystatechange = function(){
 	if(this.readyState == 4){
 		myDataText = xmlhttp.response;
 		myData = JSON.parse(myDataText);
-		// myData = myData[1];
-		distributeData(myData);
-		postData(myData);	
+
+		gatherData(myData);	
 	}
 }
 
-xmlhttp.open("GET", url, true);
-xmlhttp.responseType = 'text';
-xmlhttp.send();
-
-function postData(allData){
+function gatherData(allData){
 
 	let artistName = [];
 	let trackName = [];
@@ -49,57 +59,54 @@ function postData(allData){
 }
 
 function createDiv(image,artistName,albumName,trackName,sound){
-let divContainer = "<div id='divAppend'>";
-let imageDiv = "<div id='imageDiv'>";
-let artistDiv = "<div id='artistDiv'>";
-let albumDiv = "<div id='albumDiv'>";
-let songDiv = "<div id='songDiv'>";
-let soundDiv = "<div id='soundDiv'>";
-let divClose = "</div>";
-let divRow = "<div class='row'>";
-let divCol1 = "<div class='col-sm-5'>";
-let divCol2 = "<div class='col-sm-3'>";
+	let divContainer = "<div id='divAppend'>";
+	let imageDiv = "<div id='imageDiv'>";
+	let artistDiv = "<div id='artistDiv'>";
+	let albumDiv = "<div id='albumDiv'>";
+	let songDiv = "<div id='songDiv'>";
+	let soundDiv = "<div id='soundDiv'>";
+	let divClose = "</div>";
+	let divRow = "<div class='row'>";
+	let divCol1 = "<div class='col-sm-5'>";
+	let divCol2 = "<div class='col-sm-3'>";
 
-let imagePlace = "<img id='imagePlace' src='" + image + "' alt= 'Cover Art'/>";
-let artistPlace = "<p id='artistPlace'>" + artistName + "</p>";
-let albumPlace = "<p id='albumPlace'>" + albumName + "</p>";
-let songTitle = "<p id='songPlace'>" + trackName + "</p>";
-let songClip = "<audio id='soundPlace' src=" + sound + " controls = 'controls'> </audio>";
+	let imagePlace = "<img id='imagePlace' src='" + image + "' alt= 'Cover Art'/>";
+	let artistPlace = "<p id='artistPlace'>" + artistName + "</p>";
+	let albumPlace = "<p id='albumPlace'>" + albumName + "</p>";
+	let songTitle = "<p id='songPlace'>" + trackName + "</p>";
+	let songClip = "<audio id='soundPlace' src=" + sound + " controls = 'controls'> </audio>";
 
-let div = 
+	let div = 
 
-		divRow+
-			divCol1+divClose+
-			divCol2 +
-				divContainer +
-					imageDiv +
-						imagePlace +
+			divRow+
+				divCol1+divClose+
+				divCol2 +
+					divContainer +
+						imageDiv +
+							imagePlace +
+						divClose +
+						artistDiv +
+							artistPlace +
+						divClose +
+						albumDiv +
+							albumPlace +
+						divClose +
+						songDiv + 
+							songTitle +
+						divClose +
+						soundDiv + 
+							songClip +
+						divClose +
 					divClose +
-					artistDiv +
-						artistPlace +
-					divClose +
-					albumDiv +
-						albumPlace +
-					divClose +
-					songDiv + 
-						songTitle +
-					divClose +
-					soundDiv + 
-						songClip +
-					divClose +
-				divClose +
-			divClose+
-		divClose;
-$("body").append(div);
+				divClose+
+			divClose;
+	$("body").append(div);
 
 }
 
-function distributeData(allData){
+function refreshPage(){
 
-	// $.each( allData, function( key , value ) {
-	// 	let objData = allData;
-	//    objData = allData.artistName;
-	//    console.log(objData);
-	// });
-
+	window.location.reload();
+	getUserInput();
+	counter = 1;
 }

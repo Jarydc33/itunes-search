@@ -12,9 +12,30 @@
 
   <body>
   	<div id="banner">
-  		<input id="searchBar" type="text" placeholder="Who would you like to look for?">
-  		<button type="submit" id="searchButton">
+  		<div id="searchBar">
+  			<input id="searchText" type="search" placeholder="Who would you like to look for?">
+  			<button id="searchButton" type="submit">Enter</button>
+  		</div>
   	</div>
+
+  	<div class="row">
+  		<div class="col-sm-5"></div>
+  		<div class="col-sm-3">
+		  	<div class="pagination">
+		  		<p>||</p>
+		  		<a href="#">1</a>
+		  		<a href="#">2</a>
+		  		<a href="#">3</a>
+		  		<a href="#">4</a>
+		  		<a href="#">5</a>
+		  		<p>||</p>
+		  	</div>
+		</div>
+	</div>
+
+    <script src="ITunesAPI.js"></script>
+  </body>
+</html>
 
 <!--   	<div class="row">
   		<div class="col-sm-5"></div>
@@ -30,8 +51,3 @@
 		  	</div>
 		</div>
 	</div> -->
-
-
-    <script src="ITunesAPI.js"></script>
-  </body>
-</html>
