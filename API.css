@@ -2,7 +2,7 @@
 
 width:100%;
 height:200px;
-background-color: black;
+background-image: url('../banner.');
 
 }
 
@@ -39,10 +39,9 @@ p{
 	margin-bottom:25px;
 	border-radius:15px 50px;
 	text-align: center;
-	box-shadow: 10px 10px 10px gray;
+	box-shadow: 10px 10px 10px black;
 
 }
-
 
 #imageDiv{
 
@@ -96,28 +95,22 @@ p{
 
 }
 
-.pagination{
-	
-	font-weight:bold;
-	border:5px solid black;
-	background-color:#DA8282;
+#paginationButtons{
+	padding-left:50%;
 }
 
-.pagination a{
+#page1{
 
-	color:black;
-	padding:8px 16px;
 }
-
-.pagination a.active{
-
-	background-color: green;
-	color: white;
-	border-radius:5px;
+#page2{
+	display:none;
 }
-
-.pagination a:hover:not(.active){
-
-	background-color: gray;
-	border-radius:5px;
+#page3{
+	display:none;
+}
+#page4{
+	display:none;
+}
+#page5{
+	display:none;
 }

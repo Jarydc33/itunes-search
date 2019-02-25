@@ -1,9 +1,41 @@
 
 let xmlhttp = new XMLHttpRequest();
 
-// let counter = 1;
+let counter = 0;
 
-document.getElementById("searchButton").onclick = function(){getUserInput();}
+buttons();
+
+// document.getElementById("searchButton").onclick = function(){getUserInput();}
+
+// document.getElementById("button1").onclick = function(){
+// 	pagination();
+// 	let x = document.getElementById("page1");
+// 	x.style.display="block";
+
+// }
+// document.getElementById("button2").onclick = function(){
+// 	pagination();
+// 	let x = document.getElementById("page2");
+// 	x.style.display="block";
+// }
+
+// document.getElementById("button3").onclick = function(){
+// 	pagination();
+// 	let x = document.getElementById("page3");
+// 	x.style.display="block";
+// }
+
+// document.getElementById("button4").onclick = function(){
+// 	pagination();
+// 	let x = document.getElementById("page4");
+// 	x.style.display="block";
+// }
+
+// document.getElementById("button5").onclick = function(){
+// 	pagination();
+// 	let x = document.getElementById("page5");
+// 	x.style.display="block";
+// }
 
 function getUserInput(){
 
@@ -11,7 +43,7 @@ function getUserInput(){
 	// 	refreshPage();
 	// }
 	// counter++;
-	
+
 	let userInput = document.getElementById("searchText").value;
 	userInput = userInput.split(" ");
 	userInput = userInput.join("+");
@@ -19,7 +51,6 @@ function getUserInput(){
 
 	xmlhttp.open("GET", url, true);
 	xmlhttp.send();
-
 }
 
 xmlhttp.onreadystatechange = function(){
@@ -54,11 +85,11 @@ function gatherData(allData){
 
 		createDiv(image, artistName[i],albumName[i],trackName[i],sound);
 
-	}
-		
+	}		
 }
 
 function createDiv(image,artistName,albumName,trackName,sound){
+	counter++;
 	let divContainer = "<div id='divAppend'>";
 	let imageDiv = "<div id='imageDiv'>";
 	let artistDiv = "<div id='artistDiv'>";
@@ -100,8 +131,27 @@ function createDiv(image,artistName,albumName,trackName,sound){
 					divClose +
 				divClose+
 			divClose;
-	$("body").append(div);
+		whereAppend(div);
+	// $("body").append(div);
+}
 
+function whereAppend(div){
+
+	if(counter < 11){
+		$("#page1").append(div);
+	}
+	else if(counter < 21){
+		$("#page2").append(div);
+	}
+	else if(counter < 31){
+		$("#page3").append(div);
+	}
+	else if(counter < 41){
+		$("#page4").append(div);
+	}
+	else{
+		$("#page5").append(div);
+	}
 }
 
 function refreshPage(){
@@ -109,4 +159,54 @@ function refreshPage(){
 	window.location.reload();
 	getUserInput();
 	counter = 1;
+}
+
+function pagination(totalPage){
+
+	let i = document.getElementById("page1");
+	let j = document.getElementById("page2");
+	let k = document.getElementById("page3");
+	let l = document.getElementById("page4");
+	let m = document.getElementById("page5");
+	i.style.display="none";
+	j.style.display="none";
+	k.style.display="none";
+	l.style.display="none";
+	m.style.display="none";
+}
+
+function buttons(){
+
+	document.getElementById("searchButton").onclick = function(){getUserInput();}
+
+	document.getElementById("button1").onclick = function(){
+		pagination();
+		let x = document.getElementById("page1");
+		x.style.display="block";
+
+	}
+	document.getElementById("button2").onclick = function(){
+		pagination();
+		let x = document.getElementById("page2");
+		x.style.display="block";
+	}
+
+	document.getElementById("button3").onclick = function(){
+		pagination();
+		let x = document.getElementById("page3");
+		x.style.display="block";
+	}
+
+	document.getElementById("button4").onclick = function(){
+		pagination();
+		let x = document.getElementById("page4");
+		x.style.display="block";
+	}
+
+	document.getElementById("button5").onclick = function(){
+		pagination();
+		let x = document.getElementById("page5");
+		x.style.display="block";
+	}
+
 }
