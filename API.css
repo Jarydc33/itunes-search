@@ -5,19 +5,64 @@ height:200px;
 background-color: black;
 
 }
-#divContainer{
+
+#searchBar{
+	width:30%;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
 
 
 }
 
-#artistDiv{
-	
+#searchButton{
 
 }
+
+body{
+	background-image: url('../background.png');
+
+}
+
+p{
+
+	font-weight:bold;
+}
+
+#divAppend{
+	border: 10px solid black;
+	background-color: #F04242;
+	margin-top:25px;
+	margin-bottom:25px;
+	border-radius:15px 50px;
+	text-align: center;
+	box-shadow: 10px 10px 10px gray;
+
+}
+
 
 #imageDiv{
 
-background-color: blue;
+
+}
+
+#imagePlace{
+	box-shadow: 10px 10px 10px black;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	padding-top:10px;
+	width:200px;
+	height:auto; 
+}
+
+#artistDiv{
+
+
+}
+
+#artistPlace{
+	padding-top:10px;
 
 }
 
@@ -26,12 +71,24 @@ background-color: blue;
 
 }
 
+#albumPlace{
+
+}
+
 #songDiv{
 
 
 }
 
+#songPlace{
+
+}
+
 #soundDiv{
 
+
+}
+
+#soundPlace{
 
 }

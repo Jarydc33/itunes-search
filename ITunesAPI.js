@@ -34,27 +34,16 @@ function postData(allData){
 
 	for(let i = 0; i < allData.results.length; i++){
 
-		// let image = document.createElement("img");
-		// image.src = allData.results[i].artworkUrl100;
 		image = allData.results[i].artworkUrl100;
-		// // document.getElementById("image").appendChild(image);
 
 		artistName[i] = allData.results[i].artistName;
 		trackName[i] = allData.results[i].trackName;
 		albumName[i] = allData.results[i].collectionName;
 
-		// let sound = document.createElement("audio");
-		// sound.id = "audioTrack";
-		// sound.controls = "controls";
-		// sound.src = allData.results[i].previewUrl;
 		sound = allData.results[i].previewUrl;
-		// sound.type = "audio/mpeg";
 
 		createDiv(image, artistName[i],albumName[i],trackName[i],sound);
 
-		// document.getElementById("divAppend").appendChild(image);
-		// $("#divAppend").append("<div>"+artistName[i]+"\n"+trackName[i]+"\n"+"\n"+albumName[i]+"\n"+"</div");
-		// document.getElementById("divAppend").appendChild(sound);
 	}
 		
 }
@@ -63,33 +52,43 @@ function createDiv(image,artistName,albumName,trackName,sound){
 let divContainer = "<div id='divAppend'>";
 let imageDiv = "<div id='imageDiv'>";
 let artistDiv = "<div id='artistDiv'>";
-let albumDiv = "<div id='artistDiv'>";
+let albumDiv = "<div id='albumDiv'>";
 let songDiv = "<div id='songDiv'>";
 let soundDiv = "<div id='soundDiv'>";
 let divClose = "</div>";
+let divRow = "<div class='row'>";
+let divCol1 = "<div class='col-sm-5'>";
+let divCol2 = "<div class='col-sm-3'>";
 
-let imagePlace = "<img src='" + image + "' alt= 'Anberlin' style='width:200px;height:200px; box-shadow: 10px 10px 10px gray;' />";
-let artistPlace = "<h1>" + artistName + "</h1>";
-let albumPlace = "<h1>" + albumName + "</h1>";
-let songTitle = "<h1>" + trackName + "</h1>";
-let songClip = "<audio src=" + sound + " controls = 'controls'> </audio>";
+let imagePlace = "<img id='imagePlace' src='" + image + "' alt= 'Cover Art'/>";
+let artistPlace = "<p id='artistPlace'>" + artistName + "</p>";
+let albumPlace = "<p id='albumPlace'>" + albumName + "</p>";
+let songTitle = "<p id='songPlace'>" + trackName + "</p>";
+let songClip = "<audio id='soundPlace' src=" + sound + " controls = 'controls'> </audio>";
 
-let div = divContainer +
-			imageDiv +
-				imagePlace +
-			divClose +
-			artistDiv +
-				artistPlace +
-			divClose +
-			albumDiv +
-				albumPlace +
-			divClose +
-			songDiv + 
-				songTitle +
-			divClose +
-			soundDiv + 
-				songClip +
-			divClose +
+let div = 
+
+		divRow+
+			divCol1+divClose+
+			divCol2 +
+				divContainer +
+					imageDiv +
+						imagePlace +
+					divClose +
+					artistDiv +
+						artistPlace +
+					divClose +
+					albumDiv +
+						albumPlace +
+					divClose +
+					songDiv + 
+						songTitle +
+					divClose +
+					soundDiv + 
+						songClip +
+					divClose +
+				divClose +
+			divClose+
 		divClose;
 $("body").append(div);
 
